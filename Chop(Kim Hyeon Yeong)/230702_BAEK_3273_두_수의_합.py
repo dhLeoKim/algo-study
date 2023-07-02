@@ -7,6 +7,7 @@ ans = 0
 i, j = 0, n-1
 
 while i < j:
+    # 투포인터 알고리즘 사용
     temp = num_arr[i] + num_arr[j]
     if temp == x:
         ans += 1
