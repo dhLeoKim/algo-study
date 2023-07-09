@@ -1,6 +1,6 @@
 import math
 
-file = open("input/230702_BAEK_1475_방_번호.txt")
+file = open("input/BAEK_1475_방_번호.txt")
 room_num = file.readline().strip()
 
 char_arr = list(room_num)

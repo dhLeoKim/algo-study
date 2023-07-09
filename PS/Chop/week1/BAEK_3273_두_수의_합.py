@@ -1,4 +1,4 @@
-file = open("input/230702_BAEK_3273_두_수의_합.txt")
+file = open("input/BAEK_3273_두_수의_합.txt")
 n = int(file.readline().strip())
 num_arr = sorted(list(map(int, file.readline().strip().split())), reverse=True)
 x = int(file.readline().strip())

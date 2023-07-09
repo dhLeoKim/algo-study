@@ -1,6 +1,6 @@
 from collections import deque
 
-file = open("input/230702_BAEK_5397_키로거.txt")
+file = open("input/BAEK_5397_키로거.txt")
 t = int(file.readline().strip())
 
 ## 문자열 slicing 사용했을 때 시간 초과
