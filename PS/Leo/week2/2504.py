@@ -6,7 +6,6 @@ brackets = input()
 
 stack = []
 ret = []
-ret = []
 for bracket in brackets:
     if bracket == '(' or bracket == '[':
         stack.append(bracket)
