@@ -5,7 +5,6 @@ stdin = open("input/BAEK_1074_Z.txt")
 N, r, c = map(int, stdin.readline().rstrip().split())
 
 def sol(N, r, c):
-
 	if N == 0:
 		return 0
         
