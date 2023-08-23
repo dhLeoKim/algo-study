@@ -4,52 +4,54 @@ input = sys.stdin.readline
 
 from collections import deque
 
-def bfs(si,sj):
+def bfs(si, sj):
     queue = deque()
-    vv = [[0]*5 for _ in range(5)]
-
+    visited2 = [[0]*5 for _ in range(5)]
     queue.append((si,sj))
-    vv[si][sj]=1
+    visited2[si][sj]=1
     cnt = 1
+    di, dj = [-1, 0, 1, 0], [0, 1, 0, -1]
 
     while queue:
         ci,cj = queue.popleft()
-        for di,dj in ((-1,0),(1,0),(0,-1),(0,1)):
-            ni,nj = ci+di, cj+dj
-            if 0<=ni<5 and 0<=nj<5 and vv[ni][nj]==0 and v[ni][nj]==1:
+        for k in range(4):
+            ni,nj = ci+di[k], cj+dj[k]
+            if 0 <= ni < 5 and 0 <= nj < 5 and visited2[ni][nj] == 0 and visited[ni][nj] == 1:
                 queue.append((ni,nj))
-                vv[ni][nj]=1
-                cnt+=1
+                visited2[ni][nj] = 1
+                cnt += 1
+    
     return cnt==7
 
 
 def check():
     for i in range(5):
         for j in range(5):
-            if v[i][j]==1:
+            if visited[i][j]==1:
                 return bfs(i,j)
 
 
-def dfs(n, cnt, scnt):
-    global ans
-    if cnt>7:                   # 가지치기: 이미 7명을 넘었으면 7공주 불가!
+def dfs(n, cnt, s_cnt):
+    global ret
+    if cnt>7:                           # 7명 가지치기
         return
 
     if n == 25:
-        if cnt==7 and scnt>=4:  # 7명 그룹이고, 4명이상이 다솜파인 경우
-            if check():         # 인접했는지 체크해서 모두 인접시 정답 += 1
-                ans+=1
+        if cnt == 7 and s_cnt >= 4:     # 7명 그룹, S가 4명이상인 경우
+            if check():                 # 인접했는지 체크해서 모두 인접시 += 1
+                ret+=1
         return
 
-    v[n//5][n%5]=1              # 포함하는 경우 표시
-    dfs(n+1, cnt+1, scnt+int(arr[n//5][n%5]=='S'))
-    v[n//5][n%5]=0              # 원상복구
-    dfs(n+1, cnt, scnt)         # 포함하지 않는 경우
+    visited[n//5][n%5]=1                # 포함하는 경우
+    dfs(n+1, cnt+1, s_cnt + int(lst[n//5][n%5] == 'S'))
+    visited[n//5][n%5]=0                # 원상복구
+    dfs(n+1, cnt, s_cnt)                # 포함하지 않는 경우
 
 
-arr = [input() for _ in range(5)]
-ans = 0
-v = [[0]*5 for _ in range(5)]
-# 학생번호(0~24), 포함학생수, 다솜파학생수
-dfs(0, 0, 0)
-print(ans)
+lst = [input() for _ in range(5)]
+ret = 0
+visited = [[0]*5 for _ in range(5)]
+
+dfs(0, 0, 0)    # 학생번호 인덱스, 포함학생수, S 학생수
+
+print(ret)
