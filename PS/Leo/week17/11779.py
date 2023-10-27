@@ -8,6 +8,7 @@ def dijsktra(start):
     h = []
     d[start] = 0
     heappush(h, (0, start))
+    
     while h:
         dist, now = heappop(h)
         if d[now] < dist:
